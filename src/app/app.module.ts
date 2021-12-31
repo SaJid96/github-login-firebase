@@ -1,6 +1,9 @@
+import { environment } from 'src/environments/environment';
+
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
+//components imports
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './layout/header/header.component';
@@ -12,6 +15,23 @@ import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.com
 import { SigninComponent } from './pages/signin/signin.component';
 import { SignupComponent } from './pages/signup/signup.component';
 
+
+// http client
+import { FormsModule } from '@angular/forms';
+import {HttpClientModule} from '@angular/common/http'
+
+//firebase related imports
+
+import { AngularFireAuthModule } from '@angular/fire/auth';
+import { AngularFireModule } from '@angular/fire';
+
+//toast
+
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations'
+import { ToastrModule } from 'ngx-toastr';
+
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,13 +42,22 @@ import { SignupComponent } from './pages/signup/signup.component';
     HomeComponent,
     PageNotFoundComponent,
     SigninComponent,
-    SignupComponent
+    SignupComponent,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule
-  ],
+  imports: [BrowserModule,
+     AppRoutingModule,
+     HttpClientModule,
+     BrowserAnimationsModule,
+     ToastrModule.forRoot(),
+     FormsModule,
+     AngularFireModule.initializeApp(environment.firebase),
+     AngularFireAuthModule
+    
+    
+    
+    
+    ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
